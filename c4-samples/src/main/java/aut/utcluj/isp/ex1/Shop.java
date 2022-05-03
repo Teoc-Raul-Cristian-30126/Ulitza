@@ -18,6 +18,7 @@ public class Shop {
 
     public void hatz() {
         System.out.println("HATZ");
+        System.out.println("Hatz");
     }
 
     public String getName() {
