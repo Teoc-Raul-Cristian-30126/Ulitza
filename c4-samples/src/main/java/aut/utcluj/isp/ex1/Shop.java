@@ -16,6 +16,10 @@ public class Shop {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void hatz() {
+        System.out.println("HATZ");
+    }
+
     public String getName() {
         return name;
     }
