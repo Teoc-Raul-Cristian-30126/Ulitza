@@ -18,6 +18,10 @@ public class Shop {
 
     public void hatz() {
         System.out.println("HATZ");
+        for(int i = 0; i<10; i++)
+        {
+            System.out.println(i);
+        }
     }
 
     public String getName() {
