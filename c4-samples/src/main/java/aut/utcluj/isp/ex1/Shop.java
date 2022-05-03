@@ -23,4 +23,9 @@ public class Shop {
     public String getCity() {
         return city;
     }
+
+    public void error() {
+        int x = 3;
+
+    }
 }
