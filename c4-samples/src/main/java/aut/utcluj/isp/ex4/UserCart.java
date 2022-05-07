@@ -1,5 +1,5 @@
 package aut.utcluj.isp.ex4;
-
+import aut.utcluj.isp.ex3.Product;
 import java.util.List;
 
 /**

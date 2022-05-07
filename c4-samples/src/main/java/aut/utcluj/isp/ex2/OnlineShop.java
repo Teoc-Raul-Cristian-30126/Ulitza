@@ -3,11 +3,17 @@ package aut.utcluj.isp.ex2;
 /**
  * @author stefan
  */
-public class OnlineShop {
+public class OnlineShop extends Shop{
     private String webAddress;
 
     public OnlineShop(String name, String city, String webAddress) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        super(name);
+        this.webAddress = webAddress;
+    }
+
+    public OnlineShop(String name, String webAddress) {
+        super(name);
+        this.webAddress = webAddress;
     }
 
     public String getWebAddress() {

@@ -1,5 +1,6 @@
 package aut.utcluj.isp.ex2;
 
+import aut.utcluj.isp.ex1.Shop;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
