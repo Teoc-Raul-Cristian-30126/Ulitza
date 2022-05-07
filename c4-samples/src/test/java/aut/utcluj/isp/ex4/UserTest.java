@@ -1,6 +1,5 @@
 package aut.utcluj.isp.ex4;
 
-import aut.utcluj.isp.ex3.Product;
 import org.junit.Test;
 
 import java.util.List;
