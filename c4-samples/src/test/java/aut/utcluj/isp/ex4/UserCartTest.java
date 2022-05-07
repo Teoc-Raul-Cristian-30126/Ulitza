@@ -1,5 +1,6 @@
 package aut.utcluj.isp.ex4;
 
+import aut.utcluj.isp.ex3.Product;
 import org.junit.Test;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserCartTest {
 
     @Test
     public void testAddProductToCart() {
-        final Product product = new Product("p_1", 100d);
+        final Product product = new Product("p_1","Dell", 100d);
         final UserCart userCart = new UserCart();
         userCart.addProductToCart(product, 2);
 
@@ -40,9 +41,9 @@ public class UserCartTest {
         userCart.removeProductFromCart("p_2");
         final List<Product> productsAfterRemove = userCart.getCardProducts();
         assertEquals("Cart size should be 3", 3, productsAfterRemove.size());
-        assertEquals("First product should have p_1 id", "p_1", productsAfterRemove.get(0).getProductId());
-        assertEquals("Second product should have p_1 id", "p_1", productsAfterRemove.get(1).getProductId());
-        assertEquals("Third product should have p_2 id", "p_2", productsAfterRemove.get(2).getProductId());
+        assertEquals("First product should have p_1 id", "p_1", productsAfterRemove.get(0).getId());
+        assertEquals("Second product should have p_1 id", "p_1", productsAfterRemove.get(1).getId());
+        assertEquals("Third product should have p_2 id", "p_2", productsAfterRemove.get(2).getId());
         assertEquals("Total price should be 400", 400d, userCart.getTotalPrice(), 0);
     }
 

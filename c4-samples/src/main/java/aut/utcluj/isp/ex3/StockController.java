@@ -3,10 +3,18 @@ package aut.utcluj.isp.ex3;
 import java.util.List;
 import java.util.Map;
 
+import java.util.*;
+
+
+
+
 /**
  * @author stefan
  */
 public class StockController {
+
+
+    private Map<String, List<Product>> Catalogue = new HashMap<>();
     /**
      * Add product to catalogue
      *
@@ -15,7 +23,12 @@ public class StockController {
      * @apiNote: if products with the same products id already exists, assume that @param product has the same data
      */
     public void addProductToCatalogue(final Product product, final int quantity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Product> listaProdus= new ArrayList();
+        for(int i=0;i<quantity;i++){
+            listaProdus.add(product);
+        }
+        Catalogue.put(product.getId(),listaProdus);
+
     }
 
     /**
@@ -24,7 +37,7 @@ public class StockController {
      * @return dictionary where the key is the product id and the value is an array of products with the same id
      */
     public Map<String, List<Product>> getCatalogue() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.Catalogue;
     }
 
     /**
@@ -34,7 +47,12 @@ public class StockController {
      * @return - list of existing products with same id or null if not found
      */
     public List<Product> getProductsWithSameId(final String productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (Map.Entry<String,List<Product>> entry :Catalogue.entrySet()){
+            if(entry.getKey().equals(productId)){
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 
     /**
@@ -43,7 +61,13 @@ public class StockController {
      * @return
      */
     public int getTotalNumberOfProducts() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int sum=0;
+        for (Map.Entry<String,List<Product>> entry :Catalogue.entrySet()){
+            sum+=(entry.getValue().size());
+        }
+//            System.out.println("Key = " + entry.getKey() +
+//                    ", Value = " + entry.getValue());
+        return sum;
     }
 
     /**
@@ -53,7 +77,13 @@ public class StockController {
      * @return true if at least one product was deleted or false instead
      */
     public boolean removeAllProductsWitProductId(final String productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (Map.Entry<String,List<Product>> entry :Catalogue.entrySet()){
+            if(entry.getKey().equals(productId)){
+                Catalogue.remove(entry.getKey());
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -64,6 +94,14 @@ public class StockController {
      * @return true if at least one product was updated or false instead
      */
     public boolean updateProductPriceByProductId(final String productId, final Double price) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (Map.Entry<String,List<Product>> entry :Catalogue.entrySet()){
+            if(entry.getKey().equals(productId)){
+                for(Product p:entry.getValue()){
+                    p.setPrice(price);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }
