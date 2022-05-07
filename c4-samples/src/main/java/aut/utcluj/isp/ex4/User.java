@@ -1,5 +1,4 @@
 package aut.utcluj.isp.ex4;
-import aut.utcluj.isp.ex3.Product;
 
 /**
  * @author stefan

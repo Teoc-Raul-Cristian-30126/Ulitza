@@ -6,5 +6,5 @@
 
 ## Exercise 4
 
-![Exercise 4 image](docs/pb4.jpg)
-![Exercise 4 image](docs/pb4.jpg)
+![Exercise 4 image](docs/pb4.jpeg)
+![Exercise 4 image](docs/pb4.jpeg)
