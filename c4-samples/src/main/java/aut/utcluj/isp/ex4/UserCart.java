@@ -1,13 +1,20 @@
 package aut.utcluj.isp.ex4;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author stefan
  */
-public class UserCart {
+public class UserCart implements ICartDetails{
     private List<Product> cardProducts;
     private double totalPrice;
+
+    public UserCart() {
+        cardProducts = new ArrayList<>();
+        totalPrice = 0;
+    }
 
     public double getTotalPrice() {
         return totalPrice;
@@ -24,7 +31,10 @@ public class UserCart {
      * @param quantity - number of products of the same type to be added
      */
     public void addProductToCart(final Product product, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for(int i = 0; i < quantity; i++) {
+            cardProducts.add(product);
+            totalPrice += product.getPrice();
+        }
     }
 
     /**
@@ -33,8 +43,20 @@ public class UserCart {
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removeProductFromCart(final String productId) throws Exception{
+        boolean removed = false;
+
+        for (Product p : cardProducts) {
+            if(p.getProductId().equals(productId) && !removed) {
+                cardProducts.remove(p);
+                removed = true;
+                totalPrice -= p.getPrice();
+            }
+        }
+
+        if(!removed) {
+            throw new ProductNotFoundException();
+        }
     }
 
     /**
@@ -42,6 +64,36 @@ public class UserCart {
      * Reset products and total price to default values
      */
     public void resetCart() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        cardProducts.removeAll(cardProducts);
+        totalPrice = 0;
+
+    }
+
+    /**
+     * Return cart details
+     * Cart details should have the following format:
+     * Product id: , Items:
+     * Product id: , Items:
+     * Total price:
+     *
+     * @return cart details
+     */
+    @Override
+    public String getCartDetails() {
+        StringBuilder message = new StringBuilder();
+        List<Product> uniqueProducts = cardProducts.stream().distinct().collect(Collectors.toList());
+        for (Product p : uniqueProducts) {
+            int counter = 0;
+            message.append("Product id: ").append(p.getProductId());
+            for (Product product : cardProducts) {
+                if(product.getProductId().equals(p.getProductId())) {
+                    counter++;
+                }
+            }
+            message.append(", Items: ").append(counter).append("\n");
+        }
+        message.append("Total price: ").append(totalPrice);
+
+        return message.toString();
     }
 }

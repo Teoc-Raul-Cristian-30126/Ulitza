@@ -28,7 +28,7 @@ public class UserCartTest {
     }
 
     @Test
-    public void testRemoveProductFromCart() {
+    public void testRemoveProductFromCart() throws Exception {
         final Product firstProduct = new Product("p_1", 100d);
         final Product secondProduct = new Product("p_2", 200d);
         final UserCart userCart = new UserCart();
@@ -47,7 +47,7 @@ public class UserCartTest {
     }
 
     @Test(expected = ProductNotFoundException.class)
-    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() {
+    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() throws Exception{
         final UserCart userCart = new UserCart();
         userCart.removeProductFromCart("p_1");
     }
