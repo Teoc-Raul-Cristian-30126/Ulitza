@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="c4-samples" target="1.8" />
+      <module name="colocviu-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
