@@ -1,5 +1,6 @@
 package aut.utcluj.isp.ex4;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,11 @@ import java.util.stream.Collectors;
 public class UserCart implements ICartDetails{
     private List<Product> cardProducts;
     private double totalPrice;
+
+    public UserCart() {
+        cardProducts = new ArrayList<>();
+        totalPrice = 0;
+    }
 
     public double getTotalPrice() {
         return totalPrice;
@@ -37,22 +43,19 @@ public class UserCart implements ICartDetails{
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) {
+    public void removeProductFromCart(final String productId) throws Exception{
         boolean removed = false;
 
         for (Product p : cardProducts) {
             if(p.getProductId().equals(productId) && !removed) {
                 cardProducts.remove(p);
                 removed = true;
+                totalPrice -= p.getPrice();
             }
         }
 
         if(!removed) {
-            try {
-                throw new ProductNotFoundException();
-            } catch (ProductNotFoundException e) {
-                e.printStackTrace();
-            }
+            throw new ProductNotFoundException();
         }
     }
 
@@ -61,9 +64,9 @@ public class UserCart implements ICartDetails{
      * Reset products and total price to default values
      */
     public void resetCart() {
-        for (Product p : cardProducts) {
-            cardProducts.remove(p);
-        }
+        cardProducts.removeAll(cardProducts);
+        totalPrice = 0;
+
     }
 
     /**
@@ -87,8 +90,9 @@ public class UserCart implements ICartDetails{
                     counter++;
                 }
             }
-            message.append(" ,Items: ").append(counter);
+            message.append(", Items: ").append(counter).append("\n");
         }
+        message.append("Total price: ").append(totalPrice);
 
         return message.toString();
     }
