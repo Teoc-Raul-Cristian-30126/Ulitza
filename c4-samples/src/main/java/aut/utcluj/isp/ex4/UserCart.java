@@ -43,14 +43,15 @@ public class UserCart implements ICartDetails{
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) throws Exception{
+    public void removeProduct(final String productId) throws Exception{
         boolean removed = false;
 
         for (Product p : cardProducts) {
-            if(p.getProductId().equals(productId) && !removed) {
+            if(p.getProductId().equals(productId)) {
                 cardProducts.remove(p);
                 removed = true;
                 totalPrice -= p.getPrice();
+                break;
             }
         }
 

@@ -37,7 +37,7 @@ public class UserCartTest {
 
         final List<Product> productsBeforeRemove = userCart.getCardProducts();
         assertEquals("Cart size should be 4", 4, productsBeforeRemove.size());
-        userCart.removeProductFromCart("p_2");
+        userCart.removeProduct("p_2");
         final List<Product> productsAfterRemove = userCart.getCardProducts();
         assertEquals("Cart size should be 3", 3, productsAfterRemove.size());
         assertEquals("First product should have p_1 id", "p_1", productsAfterRemove.get(0).getProductId());
@@ -49,7 +49,7 @@ public class UserCartTest {
     @Test(expected = ProductNotFoundException.class)
     public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() throws Exception{
         final UserCart userCart = new UserCart();
-        userCart.removeProductFromCart("p_1");
+        userCart.removeProduct("p_1");
     }
 
     @Test
