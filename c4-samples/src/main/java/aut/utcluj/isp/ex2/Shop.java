@@ -7,13 +7,15 @@ public class Shop {
     private String name;
     private String city;
 
+
     public Shop(String name, String city) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.name = name;
+        this.city = city;
     }
 
     public Shop(String name) {
         this.city = "";
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.name = name;
     }
 
     public String getName() {
@@ -23,4 +25,5 @@ public class Shop {
     public String getCity() {
         return city;
     }
+
 }
