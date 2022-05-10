@@ -10,14 +10,13 @@ public class Shop {
     private String city;
 
     public Shop(String name, String city) {
-
         this.name = name;
         this.city = city;
     }
 
     public Shop(String name) {
-        this.city = "";
         this.name = name;
+        this.city = "";
     }
 
     public String getName() {
@@ -28,21 +27,16 @@ public class Shop {
         return city;
     }
 
-    public String toString() {
-
-        return "Shop: " + getName() + " City: " + getCity();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Shop shop = (Shop) o;
-        return name.equals(shop.name) && Objects.equals(city, shop.city);
+        return Objects.equals(name, shop.name) && Objects.equals(city, shop.city);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, city);
+    public String toString() {
+        return "Shop: " + name + " City: " + city;
     }
 }

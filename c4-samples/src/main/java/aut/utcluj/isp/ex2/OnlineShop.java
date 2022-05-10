@@ -3,7 +3,7 @@ package aut.utcluj.isp.ex2;
 /**
  * @author stefan
  */
-public class OnlineShop extends Shop {
+public class OnlineShop extends Shop{
     private String webAddress;
 
     public OnlineShop(String name, String city, String webAddress) {
@@ -11,13 +11,13 @@ public class OnlineShop extends Shop {
         this.webAddress = webAddress;
     }
 
-    public String getWebAddress() {
-        return webAddress;
+    @Override
+    public String toString() {
+        return super.toString() + " Web address: " + this.webAddress;
+
     }
 
-    public String toString() {
-
-        return "Shop: " + getName() + " City: " + getCity() + " Web address: " + getWebAddress();
-
+    public String getWebAddress() {
+        return webAddress;
     }
 }
