@@ -67,7 +67,6 @@ public class UserCart implements ICartDetails{
     public void resetCart() {
         cardProducts.removeAll(cardProducts);
         totalPrice = 0;
-
     }
 
     /**
