@@ -65,8 +65,7 @@ public class StockController {
         for (Map.Entry<String,List<Product>> entry :Catalogue.entrySet()){
             sum+=(entry.getValue().size());
         }
-//            System.out.println("Key = " + entry.getKey() +
-//                    ", Value = " + entry.getValue());
+
         return sum;
     }
 
