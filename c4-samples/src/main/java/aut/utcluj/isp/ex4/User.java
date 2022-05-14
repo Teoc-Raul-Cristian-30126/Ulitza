@@ -24,6 +24,10 @@ public class User {
     public Double getUserMoney() {
         return userMoney;
     }
+    
+    public void setUserMoney(Double money) {
+        userMoney = money;
+    }
 
     /**
      * Add product to the cart
