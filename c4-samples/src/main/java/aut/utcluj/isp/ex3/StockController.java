@@ -1,9 +1,11 @@
 package aut.utcluj.isp.ex3;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import java.util.*;
+import javax.swing.table.AbstractTableModel;
 
 
 
@@ -11,10 +13,11 @@ import java.util.*;
 /**
  * @author stefan
  */
-public class StockController {
+public class StockController extends AbstractTableModel{
 
 
     private Map<String, List<Product>> Catalogue = new HashMap<>();
+    private String[] columns = new String[] {"Id","Name", "Price", "Quantity"};
     /**
      * Add product to catalogue
      *
@@ -102,5 +105,39 @@ public class StockController {
             }
         }
         return false;
+    }
+
+    @Override
+    public int getRowCount() {
+        return Catalogue.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 4;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Object myKey = Catalogue.keySet().toArray()[rowIndex];
+        List<Product> valueForMyKey = Catalogue.get(myKey.toString());
+        
+        switch (columnIndex) {
+            case 0:return myKey;
+            case 1:return valueForMyKey.get(0).getName();
+            case 2:return valueForMyKey.get(0).getPrice();
+            case 3:return valueForMyKey.size();
+        }
+        
+        return "N/A";
+    }
+    
+    public void requestData() throws IOException {
+        this.fireTableDataChanged();
+    }
+    
+    @Override
+    public String getColumnName(int index) {
+        return columns[index];
     }
 }
